@@ -1,0 +1,42 @@
+extends ../layout
+
+
+block content
+    -var info = locals.info
+    -var error = locals.errors
+
+    br
+    br
+    br
+
+    - var title = "Crear Usuario"
+    h1= title
+
+    br
+    br
+    br
+
+
+    .container.mt-5
+        h1.mb-4 Formulario de Creación
+        
+        //- Formulario con estilos de Bootstrap
+        form(action='/usuarios/create', method='POST')
+            .mb-3
+                label(for='nombre', class='form-label') Nombre
+                input#nombre.form-control(type='text', name='nombre', value = usuario.nombre,required)
+
+            .mb-3
+                label(for='email', class='form-label') Correo Electrónico
+                input#email.form-control(type='email', name='email', value = usuario.email, required)
+            
+            .mb-3
+                label(for='pwd', class='form-label') Contraseña
+                input#password.form-control(type='password', name='password', required)
+                
+            .mb-3
+                label(for='pwd2', class='form-label') Confirmar Contraseña
+                input#password2.form-control(type='password', name='confirm_password', required)
+
+
+            button.btn.btn-primary(type='submit') Guardar

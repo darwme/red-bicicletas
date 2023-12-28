@@ -11,16 +11,24 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
     "gh-pages": "^6.1.0",
     "http-errors": "~1.6.3",
     "jade": "^0.29.0",
+    "jsonwebtoken": "^9.0.2",
+    "mailer": "^0.6.7",
     "mongoose": "^8.0.3",
+    "mongoose-unique-validator": "^4.0.0",
     "morgan": "~1.9.1",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
     "request": "^2.88.2"
   },
   "devDependencies": {
+    "bcrypt": "^5.1.1",
     "jasmine": "^5.1.0",
     "moments": "^0.0.2",
+    "nodemailer": "^6.9.7",
     "nodemon": "^3.0.2"
   }
 }

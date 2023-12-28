@@ -12,6 +12,7 @@ var bicicletaSchema = new Schema({
     }
 });
 
+
 bicicletaSchema.statics.createInstance = function(code, color, modelo, ubicacion){
     return new this({
         code: code,
@@ -21,16 +22,19 @@ bicicletaSchema.statics.createInstance = function(code, color, modelo, ubicacion
     });
 }
 
-bicicletaSchema.methods.toString = function(){
-    return 'code: ' + this.code + " | color:  " + this.color;
-}
-
 bicicletaSchema.statics.add = async function(aBici) {
     return await this.create(aBici);
 }
 
+
+
+bicicletaSchema.methods.toString = function(){
+    return 'code: ' + this.code + " | color:  " + this.color;
+}
+
+
 bicicletaSchema.statics.allBicis = function(){
-    return this.find({});
+    return this.find({}).exec();
 }
 
 bicicletaSchema.statics.findByCode = function(aCode){

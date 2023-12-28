@@ -1,6 +1,9 @@
 extends ../layout 
 
 block content
+    - var title = locals.title
+    - var bicis = locals.bicis
+    h1=title
     table.table
         thead 
             tr 
@@ -9,7 +12,7 @@ block content
                 th(scope='col') Modelo
                 th(scope='col') Ubicacion
         tbody 
-            each bici in bicis
+            each bici in locals.bicis
                 tr 
                     td(scope='row')
                         =bici.id

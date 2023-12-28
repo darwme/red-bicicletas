@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+    - var title = "Editar Usuario"
+    h1= title
+
+    br
+    br
+    br
+
+    a(href='/usuarios') Regresar
+
+    br
+    br
+    br
+
+    form(action=`/usuarios/${usuario.id}/update`, method='POST')
+        .form-group
+            label(for='nombre') Nombre
+            input#nombre.form-control(type='text', name='nombre', value=usuario.nombre, class=errors.nombre ? 'is-invalid' : '') 
+        if errors.nombre
+            small#emailHelp.text-danger 
+                = errors.nombre.msg
+
+        br
+        br
+        input.btn.btn-primary(type='submit', value='Guardar')

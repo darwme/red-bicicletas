@@ -1,0 +1,39 @@
+// usuarios/index.jade
+
+extends ../layout
+
+block content
+  br
+  br
+  br
+  
+  - var title = "Usuarios"
+  h1= title
+
+  a.btn.btn-success(href='/usuarios/create') Nuevo Usuario
+
+  br
+  br
+  table.table 
+    thead 
+      tr
+        th(scope='col') #
+        th(scope='col') Nombre
+        th(scope='col') Email
+        th(scope='col') Verificado 
+        th(scope='col')
+        th(scope='col')
+    tbody
+      each usuario in usuarios
+        tr
+          td(scope='row')
+            = usuario.id
+          td= usuario.nombre 
+          td= usuario.email
+          td= usuario.verificado ? 'Si' : 'No'
+          td
+            a.btn.btn-primary(href=`/usuarios/${usuario.id}/update`) Editar
+          td
+            form(action=`/usuarios/${usuario.id}/delete`, method='POST')
+              input(type='hidden', name='id', value=usuario.id)
+              input.btn.btn-danger(type='submit', name='submit_param', value='Eliminar')

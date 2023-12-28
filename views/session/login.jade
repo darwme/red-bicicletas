@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+    - var info = locals.info
+    - var title = "Login"
+
+    br
+    br
+    br
+     br
+    br
+    br
+
+
+
+    h1= title
+
+
+    .container
+        .login-form
+            .main-div
+                .panel
+                    if info && info.message
+                        div.alert.alert-danger
+                            = info.message
+                    h2 Admin Login
+                    p Por favor, ingrese s email y password
+                form#Login(action='/login', method='post')
+                    .form-group
+                        label(for='email', class='form-label') Correo Electrónico
+                            input#email.form-control(type='email', name='email', val  required)
+                    .form-group
+                        label(for='password', class='form-label') Contraseña
+                            input#password.form-control(type='password', name='password', required)
+                    .forgot
+                        a(href="/forgotPassword") Forgot Password?
+
+                    button.btn.btn-primary(type='submit') Login
+
+
