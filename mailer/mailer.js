@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'production') {
 
 console.log('transporter', transporter);
 console.log('process.env.NODE_ENV', process.env.NODE_ENV);
-console.log('process.env.MAILER_USER', process.env.MAILGUN_API_KEY);
+console.log('process.env.MAILER_API', process.env.MAILGUN_API_KEY);
 
 module.exports = transporter;
 
