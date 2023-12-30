@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const saltRound = 10;
-const mailer = require('../mailer/mailer');
+const { nodemailerMailgun } = require('../mailer/mailer');
 const Token = require('./token');
 
 
@@ -100,7 +100,7 @@ usuarioSchema.methods.enviar_email_bienvenida = async function () {
             subject: 'Verificación de cuenta',
             text: 'Hola,\n\n' + 'Por favor, para verificar su cuenta haga click en este link: \n' + 'http://localhost:3000' + '\/token/confirmation\/' + token.token + '\n'
         };
-        await mailer.sendMail(mailOptions);
+        await nodemailerMailgun.sendMail(mailOptions);
         console.log('Se ha enviado un email de bienvenida a: ' + email_destination + '.');
     } catch (err) {
         console.log(err.message);
@@ -122,7 +122,7 @@ usuarioSchema.methods.resetPassword = async function () {
             subject: 'Reseteo de password de cuenta',
             text: 'Hola,\n\n' + 'Por favor, para resetear el password de su cuenta haga click en este link: \n' + 'http://localhost:3000' + '\/resetPassword\/' + token.token + '\n'
         };
-        await mailer.sendMail(mailOptions);
+        await nodemailerMailgun.sendMail(mailOptions);
         console.log('Se envió un email para resetear el password a: ' + email_destination + '.');
 
     } catch (err) {

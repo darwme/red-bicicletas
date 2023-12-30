@@ -1,26 +1,26 @@
 const nodemailer = require('nodemailer');
-const mailgunTransport = require('nodemailer-mailgun-transport');
+const mg = require('nodemailer-mailgun-transport');
 
-let transporter;
+let nodemailerMailgun;
 // Configuración de nodemailer para utilizar el transporte de Mailgun
 
 if (process.env.NODE_ENV === 'production') {
     console.log('entro a produccion o staging');
     console.log('MAILGUN_API_KEY', process.env.MAILGUN_API_KEY);
     console.log('MAILGUN_DOMAIN', process.env.MAILGUN_DOMAIN);
-    var mailgunOptions = {
+    var auth = {
         auth: {
             api_key: '9af306040a4c11e2f540a93ae6995175-1900dca6-d3ed18c6',
             domain: 'https://red-bicicletas-production.up.railway.app/',
         }
     };
 
-    transporter = nodemailer.createTransport(mailgunTransport(mailgunOptions));
+    nodemailerMailgun = nodemailer.createTransport(mg(auth));
 } else {
     console.log('entro a desarrollo');
     console.log('MAILER_USER', process.env.MAILER_USER);
     console.log('MAILER_CONTRASENA', process.env.MAILER_CONTRASENA);
-    transporter = nodemailer.createTransport({
+    nodemailerMailgun = nodemailer.createTransport({
         host: 'smtp.ethereal.email',
         port: 587,
         auth: {
@@ -32,5 +32,5 @@ if (process.env.NODE_ENV === 'production') {
     
 
 
-module.exports = { transporter };
+module.exports = { nodemailerMailgun };
 
