@@ -23,7 +23,7 @@ const { error } = require('console');
 const usuario = require('./models/usuario');
 
 
-const mongoDB = 'mongodb://localhost/red_bicicletas';
+const mongoDB = 'mongodb+srv://admin:12345@atlascluster.e5sbfwt.mongodb.net/?retryWrites=true&w=majority';
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
