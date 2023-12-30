@@ -9,6 +9,7 @@ if (process.env.NODE_ENV === 'production') {
         }
     }
     mailConfig = mailTrapTransport(options);
+    console.log(mailConfig);
 } else {
     if (process.env.NODE_ENV === 'staging') {
         console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
