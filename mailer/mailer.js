@@ -1,35 +1,29 @@
-const nodemailer = require('nodemailer');
-const mailTrapTransport = require('mailtrap');
+const Nodemailer = require("nodemailer");
+const MailtrapTransport = require("mailtrap");
+
+
+
+const MAILTRAP_API_KEY = process.env.MAILTRAP_API_KEY || "";
 
 let mailConfig;
-if (process.env.NODE_ENV === 'production') {
+
+if (MAILTRAP_API_KEY && process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
     const options = {
         auth: {
-            api_key: process.env.MAILTRAP_API_KEY,
-        }
-    }
-    mailConfig = mailTrapTransport(options);
-    console.log(mailConfig);
+            api_key: MAILTRAP_API_KEY,
+        },
+    };
+    mailConfig = Nodemailer.createTransport(MailtrapTransport({ options }));
 } else {
-    if (process.env.NODE_ENV === 'staging') {
-        console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-        const options = {
-            auth: {
-                api_key: process.env.MAILTRAP_API_KEY,
-            }
+    mailConfig = {
+        host: 'smtp.ethereal.email',
+        port: 587,
+        auth: {
+            user: 'leo.west@ethereal.email',
+            pass: 'XGjK2vckr5nQUVv4ts',
         }
-        mailConfig = mailTrapTransport(options);
-
-    } else {
-        mailConfig = {
-            host: 'smtp.ethereal.email',
-            port: 587,
-            auth: {
-                user: 'leo.west@ethereal.email',
-                pass: 'XGjK2vckr5nQUVv4ts'
-            }
-        }
-    }
+    };
 }
 
-    module.exports = nodemailer.createTransport(mailConfig);
+
+module.exports = Nodemailer.createTransport(mailConfig);
