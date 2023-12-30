@@ -2,53 +2,37 @@ const nodemailer = require('nodemailer');
 const mailgunTransport = require('nodemailer-mailgun-transport');
 
 let transporter;
+// Configuración de nodemailer para utilizar el transporte de Mailgun
 
 if (process.env.NODE_ENV === 'production') {
-    transporter = nodemailer.createTransport(mailgunTransport({
+    console.log('entro a produccion o staging');
+    console.log('MAILGUN_API_KEY', process.env.MAILGUN_API_KEY);
+    console.log('MAILGUN_DOMAIN', process.env.MAILGUN_DOMAIN);
+    var mailgunOptions = {
+        api_key: '9af306040a4c11e2f540a93ae6995175-1900dca6-d3ed18c6',
+        domain: 'https://red-bicicletas-production.up.railway.app/',
         auth: {
-            api_key: process.env.MAILGUN_API_KEY,
-        },
-    }));
-} else {
-    transporter = {
-        host: 'smtp.ethereal.email',
-        port: 587,
-        auth: {
-            user: process.env.MAILER_USER,
-            pass: process.env.MAILER_CONTRASENA,
+            api_key: '9af306040a4c11e2f540a93ae6995175-1900dca6-d3ed18c6',
+            domain: 'https://red-bicicletas-production.up.railway.app/',
         }
-    }
-}
-
-console.log('transporter', transporter);
-console.log('process.env.NODE_ENV', process.env.NODE_ENV);
-console.log('process.env.MAILER_API', process.env.MAILGUN_API_KEY);
-
-module.exports = transporter;
-
-
-
-
-/*
-
-if (process.env.NODE_ENV === 'production') {
-    // Aquí puedes agregar configuración específica para producción
-    mailConfig = {
-        auth: {
-            api_key: process.env.SENDGRID_API_KEY,
-        },
-        // Otros ajustes específicos de producción...
     };
-}else{
-    const mailConfig = {
+
+    transporter = nodemailer.createTransport(mailgunTransport(mailgunOptions));
+} else {
+    console.log('entro a desarrollo');
+    console.log('MAILER_USER', process.env.MAILER_USER);
+    console.log('MAILER_CONTRASENA', process.env.MAILER_CONTRASENA);
+    transporter = nodemailer.createTransport({
         host: 'smtp.ethereal.email',
         port: 587,
         auth: {
             user: process.env.MAILER_USER,
             pass: process.env.MAILER_CONTRASENA,
         }
-    }
+    });
 }
+    
 
-module.exports = nodemailer.createTransport(mailConfig);
-*/
+
+module.exports = { transporter };
+
