@@ -4,21 +4,25 @@ const mailgunTransport = require('nodemailer-mailgun-transport');
 let transporter;
 
 if (process.env.NODE_ENV === 'production') {
-  transporter = nodemailer.createTransport(mailgunTransport({
-    auth: {
-      api_key: process.env.MAILGUN_API_KEY,
-    },
-  }));
+    transporter = nodemailer.createTransport(mailgunTransport({
+        auth: {
+            api_key: process.env.MAILGUN_API_KEY,
+        },
+    }));
 } else {
-  transporter  = {
-    host: 'smtp.ethereal.email',
-    port: 587,
-    auth: {
-        user: process.env.MAILER_USER,
-        pass: process.env.MAILER_CONTRASENA,
+    transporter = {
+        host: 'smtp.ethereal.email',
+        port: 587,
+        auth: {
+            user: process.env.MAILER_USER,
+            pass: process.env.MAILER_CONTRASENA,
+        }
     }
 }
-}
+
+console.log('transporter', transporter);
+console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+console.log('process.env.MAILER_USER', process.env.MAILGUN_API_KEY);
 
 module.exports = transporter;
 
