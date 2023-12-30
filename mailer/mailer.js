@@ -9,8 +9,6 @@ if (process.env.NODE_ENV === 'production') {
     console.log('MAILGUN_API_KEY', process.env.MAILGUN_API_KEY);
     console.log('MAILGUN_DOMAIN', process.env.MAILGUN_DOMAIN);
     var mailgunOptions = {
-        api_key: '9af306040a4c11e2f540a93ae6995175-1900dca6-d3ed18c6',
-        domain: 'https://red-bicicletas-production.up.railway.app/',
         auth: {
             api_key: '9af306040a4c11e2f540a93ae6995175-1900dca6-d3ed18c6',
             domain: 'https://red-bicicletas-production.up.railway.app/',
