@@ -16,14 +16,14 @@ const passport = require('./config/passport');
 const session = require('express-session');
 const addBicicleta = require('./routes/addBicicleta');
 const Token = require('./models/token');
-
+require('dotenv').config();
 
 const mongoose = require('mongoose');
 const { error } = require('console');
 const usuario = require('./models/usuario');
 
 
-const mongoDB = 'mongodb+srv://admin:12345@atlascluster.e5sbfwt.mongodb.net/?retryWrites=true&w=majority';
+const mongoDB = process.env.MONGO_URI;
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
