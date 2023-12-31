@@ -212,7 +212,9 @@ if (process.env.NODE_ENV === 'development') {
     passport.authenticate('google', {
       scope: [
         'https://www.googleapis.com/auth/plus.login',
-        'https://www.googleapis.com/auth/plus.profile.emails.read']
+        'https://www.googleapis.com/auth/plus.profile.emails.read',
+        'profile',
+      ]
     })
   );
 
