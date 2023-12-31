@@ -3,8 +3,8 @@ extends ../layout
 block content
     - var info = locals
     - var title = "Bienvenido!"
-    - var correo = req.user.email
-    - var contrasena = req.user.password
+    - var correo = locals.user.email
+    - var contrasena = locals.user.password
 
     br
     br
