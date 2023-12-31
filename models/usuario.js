@@ -132,32 +132,35 @@ usuarioSchema.methods.resetPassword = async function () {
 }
 
 
-usuarioSchema.statics.findOneOrCreateByGoogle = function findOneOrCreate(condition, callback) {
+usuarioSchema.statics.findOneOrCreateByGoogle = async function findOneOrCreate(condition) {
     const self = this;
     console.log('condition', condition);
-    self.findOne({
-        $or: [
-            { 'googleId': condition.id }, { 'email': condition.emails[0].value }
-        ]
-    }, (err, result) => {
+    try {
+        const result = await self.findOne({
+            $or: [
+                { 'googleId': condition.id }, { 'email': condition.emails[0].value }
+            ]
+        });
         if (result) {
-            callback(err, result);
+            return result;
         } else {
             console.log('--------- CONDITION ---------', condition);
             let values = {};
             values.googleId = condition.id;
-            values.email = condition.emails && condition.emails.length > 0 ? condition.emails[0].value : '';
-            values.nombre = condition.displayName || 'SIN NOMBRE';
+            values.email = condition.emails[0].value;
+            values.nombre = condition.displayName;
             values.verificado = true;
-            values.password = crypto.randomBytes(16).toString('hex');
+            values.password = condition._json.etag;
+            //values.password = crypto.randomBytes(16).toString('hex');
             
             console.log('--------- VALUES ---------', values);
-            self.create(values, (err, result) => {
-                if (err) { console.log('::::::::ERROR:::::::\n',err); }
-                return callback(err, result);
-            });
+            const createdResult = await self.create(values);
+            return createdResult;
         }
-    });
+    } catch (err) {
+        console.log('::::::::ERROR:::::::\n', err);
+        throw err;
+    }
 };
 
 module.exports = mongoose.model('Usuario', usuarioSchema);

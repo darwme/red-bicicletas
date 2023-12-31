@@ -34,11 +34,14 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: process.env.HOST + '/auth/google/callback'
 },
-    function (accessToken, refreshToken, profile, cb) {
-        console.log('profile', profile);
-        Usuario.findOneOrCreateByGoogle(profile, function (err, user) {
-            return cb(err, user);
-        });
+    async function (accessToken, refreshToken, profile, cb) {
+        try {
+            console.log('profile', profile);
+            const user = await Usuario.findOneOrCreateByGoogle(profile);
+            return cb(null, user);
+        } catch (err) {
+            return cb(err);
+        }
     }
 ));
 
