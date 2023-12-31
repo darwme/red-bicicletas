@@ -163,4 +163,37 @@ usuarioSchema.statics.findOneOrCreateByGoogle = async function findOneOrCreate(c
     }
 };
 
+usuarioSchema.findOneOrCreateByFacebook = async function findOneOrCreate(condition) {
+    const self = this;
+    console.log('condition', condition);
+    try {
+        const result = await self.findOne({
+            $or: [
+                { 'facebookId': condition.id }, { 'email': condition.emails[0].value }
+            ]
+        });
+        if (result) {
+            return result;
+        } else {
+            console.log('--------- CONDITION ---------', condition);
+            let values = {};
+            values.facebookId = condition.id;
+            values.email = condition.emails[0].value;
+            values.nombre = condition.displayName;
+            values.verificado = true;
+            //values.password = condition._json.etag;
+            values.password = crypto.randomBytes(16).toString('hex');
+            
+            console.log('--------- VALUES ---------', values);
+            const createdResult = await self.create(values);
+            return createdResult;
+        }
+    } catch (err) {
+        console.log('::::::::ERROR:::::::\n', err);
+        throw err;
+    }
+};
+
+
+
 module.exports = mongoose.model('Usuario', usuarioSchema);
