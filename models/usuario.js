@@ -154,7 +154,7 @@ usuarioSchema.statics.findOneOrCreateByGoogle = function findOneOrCreate(conditi
             
             console.log('--------- VALUES ---------', values);
             self.create(values, (err, result) => {
-                if (err) { console.log(err); }
+                if (err) { console.log('::::::::ERROR:::::::\n',err); }
                 return callback(err, result);
             });
         }
