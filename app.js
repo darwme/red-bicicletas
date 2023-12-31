@@ -196,6 +196,10 @@ app.get('/privacy', function (req, res) {
   res.render('privacy');
 });
 
+app.get('/about-service', function (req, res) {
+  res.render('about-service');
+});
+
 app.use('/', indexRouter);
 app.use('/bicicletas', loggedIn, bicicletasRouter);
 app.use('/api/auth', authAPIRouter);

@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  -var title = 'Condiciones de Servicio'
+    br
+    br
+    br
+    br
+    br
+    
+    .row
+      .col-md-8.offset-md-2
+        h1.text-centerb #{title}
+        hr.my-4
+        p.lead
+          | Estas son las Condiciones de Servicio para el uso de [Nombre de la Aplicación de Bicicletas], un servicio de alquiler de bicicletas.
+
+        h2 Uso del Servicio
+        p
+          | El servicio está disponible para personas mayores de 18 años. Para alquilar una bicicleta, los usuarios deben registrarse en la aplicación, proporcionando información válida y actualizada.
+
+        h2 Tarifas y Pagos
+        p
+          | Las tarifas se calculan por hora o por día. El pago se realizará a través de la aplicación, utilizando tarjetas de crédito o débito. Los cargos incluyen impuestos aplicables.
+
+        h2 Responsabilidades del Usuario
+        p
+          | Los usuarios son responsables del uso adecuado y seguro de las bicicletas. Esto incluye seguir todas las leyes de tráfico y usar casco. Las bicicletas deben devolverse en el mismo estado en que se alquilaron.
+
+        h2 Limitaciones de Responsabilidad
+        p
+          | [Nombre de la Empresa] no se responsabiliza por accidentes o daños que ocurran durante el uso del servicio de alquiler. Los usuarios aceptan utilizar las bicicletas bajo su propio riesgo.
+
+        h2 Modificaciones del Servicio
+        p
+          | Nos reservamos el derecho de modificar o discontinuar el servicio con o sin previo aviso. No seremos responsables ante el usuario o terceros por cualquier modificación, cambio de precio, suspensión o discontinuación del servicio.
+
+        h2 Cambios en las Condiciones
+        p
+          | Estas condiciones pueden actualizarse periódicamente. Al continuar utilizando el servicio después de estos cambios, los usuarios aceptan las condiciones modificadas.
+
+        // Botón de Aceptar
+        .text-center
+          button.btn.btn-primary(type='button') Aceptar
+
+        // Puedes seguir agregando más contenido según sea necesario
