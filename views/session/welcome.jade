@@ -1,10 +1,10 @@
 extends ../layout 
 
 block content
-    - var info = locals.info
+    - var info = locals
     - var title = "Bienvenido!"
-    - var correo = locals
-    - var contrasena = locals.user
+    - var correo = req.user.email
+    - var contrasena = req.user.password
 
     br
     br
@@ -15,6 +15,7 @@ block content
 
     .container
       h1 = title
+      p ${JSON.stringify(info)}
       p Tu cuenta ha sido creada satisfactoriamente.
       p Correo electrónico: #{correo}   // Recuerda manejar los datos sensibles de manera segura.
       p Contraseña: #{contrasena}
