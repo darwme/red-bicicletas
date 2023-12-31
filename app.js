@@ -105,6 +105,8 @@ app.get('/logout', function (req, res) {
 });
 
 
+
+
 app.get('/forgotPassword', function (req, res) {
   console.log('forgotPassword, entrado al get');
   res.render('session/forgotPassword');
@@ -190,6 +192,9 @@ function validarUsuario(req, res, next) {
 
 }
 
+app.get('/privacy', function (req, res) {
+  res.render('privacy');
+});
 
 app.use('/', indexRouter);
 app.use('/bicicletas', loggedIn, bicicletasRouter);
