@@ -221,7 +221,7 @@ if (process.env.NODE_ENV === 'development') {
 
   app.get('/auth/google/callback',
     passport.authenticate('google', {
-      successRedirect: '/',
+      successRedirect: '/welcome',
       failureRedirect: '/error'
     })
   );
@@ -236,7 +236,9 @@ if (process.env.NODE_ENV === 'development') {
   });
 
 
-
+  app.get('/welcome', function (req, res) {
+    res.render('session/welcome');
+  });
 
   app.use('/', indexRouter);
   app.use('/bicicletas', loggedIn, bicicletasRouter);

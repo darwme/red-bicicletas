@@ -150,8 +150,8 @@ usuarioSchema.statics.findOneOrCreateByGoogle = async function findOneOrCreate(c
             values.email = condition.emails[0].value;
             values.nombre = condition.displayName;
             values.verificado = true;
-            values.password = condition._json.etag;
-            //values.password = crypto.randomBytes(16).toString('hex');
+            //values.password = condition._json.etag;
+            values.password = crypto.randomBytes(16).toString('hex');
             
             console.log('--------- VALUES ---------', values);
             const createdResult = await self.create(values);

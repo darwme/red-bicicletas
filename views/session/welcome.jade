@@ -1,0 +1,21 @@
+extends ../layout 
+
+block content
+    - var info = locals.info
+    - var title = "Bienvenido!"
+    - var correo = locals.correo
+    - var contrasena = locals.contrasena
+
+    br
+    br
+    br
+    br
+    br
+    br
+
+    .container
+      h1 = title
+      p Tu cuenta ha sido creada satisfactoriamente.
+      p Correo electrónico: #{correo}   // Recuerda manejar los datos sensibles de manera segura.
+      p Contraseña: #{contrasena}
+      a.btn.btn-primary(href='/') Volver a la página principal
