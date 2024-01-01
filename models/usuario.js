@@ -163,7 +163,7 @@ usuarioSchema.statics.findOneOrCreateByGoogle = async function findOneOrCreate(c
     }
 };
 
-usuarioSchema.findOneOrCreateByFacebook = async function findOneOrCreate(condition) {
+usuarioSchema.statics.findOneOrCreateByFacebook = async function findOneOrCreate(condition) {
     const self = this;
     console.log('condition', condition);
     try {
